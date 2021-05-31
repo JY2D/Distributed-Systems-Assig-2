@@ -1,9 +1,5 @@
 package data;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "server")
 public class Server implements Comparable<Server> {
 
     private String type;
@@ -50,7 +46,6 @@ public class Server implements Comparable<Server> {
      * the XML parser uses the annotation to
      * get the TYPE parsed from the XML attribute
      */
-    @XmlAttribute(name = "type")
     public String getType() {
         return type;
     }
@@ -60,7 +55,6 @@ public class Server implements Comparable<Server> {
      * the XML parser uses the annotation to get
      * the limit which is parsed from thee XML attribute
      */
-    @XmlAttribute(name = "limit")
     public String getLimit() {
         return limit;
     }
@@ -69,7 +63,6 @@ public class Server implements Comparable<Server> {
      * the XML parser uses the annotation to get the coreCount
      * of the server which was parsed from the XML attribute
      */
-    @XmlAttribute(name = "coreCount")
     public int getCoreCount() {
         return coreCount;
     }
@@ -79,7 +72,6 @@ public class Server implements Comparable<Server> {
      * the XML parser uses the annotation to get the memory
      * of the server which was parsed from the XML attribute
      */
-    @XmlAttribute(name = "memory")
     public int getMemory() {
         return memory;
     }
@@ -89,7 +81,6 @@ public class Server implements Comparable<Server> {
      * the XML parser uses the annotation to get the memory
      * of the server which was parsed from the XML attribute
      */
-    @XmlAttribute(name = "disk")
     public int getDisk() {
         return disk;
     }
