@@ -3,7 +3,6 @@ import data.Server;
 import scheduler.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Client {
     private ClientRepository mRepository;
@@ -20,7 +19,7 @@ public class Client {
      
     public static void main(String[] args) {
         ClientRepository repository = new ClientRepository();
-        ImprovedFF jFit = new ImprovedFF();
+        MinWaitingTimeFit jFit = new MinWaitingTimeFit();
         Client client = new Client(repository, jFit);
         client.connectToServer();
         client.serverHandshake();
