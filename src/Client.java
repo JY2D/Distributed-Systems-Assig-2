@@ -1,21 +1,13 @@
-import data.DsSystem;
 import data.Job;
 import data.Server;
 import scheduler.*;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import javax.xml.bind.JAXBException;
 
 public class Client {
     private ClientRepository mRepository;
     private String message;
-    Server largestServer = null;
     ServerProvider mServerProvider = null;
 
     /**
@@ -27,24 +19,11 @@ public class Client {
      */
      
     public static void main(String[] args) {
-        DsSystem dsSystem = null;
         ClientRepository repository = new ClientRepository();
         ImprovedFF jFit = new ImprovedFF();
         Client client = new Client(repository, jFit);
         client.connectToServer();
         client.serverHandshake();
-
-        try {
-            Path absolutePath = FileSystems.getDefault().getPath("").toAbsolutePath();
-            dsSystem = ParseXml.parse(absolutePath + "/ds-system.xml", DsSystem.class);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
-        dsSystem.getServerArray().getServerList().sort(Comparator.comparingInt(Server::getCoreCount));
-
-        jFit.setDsServerArrayList((ArrayList<Server>) dsSystem.getServerArray().getServerList());
-        client.largestServer = dsSystem.getServerArray().getServerList().get(0);
         client.scheduleJobs();
     }
 
@@ -117,7 +96,7 @@ public class Client {
                         if (mServerProvider instanceof ImprovedFF)
                             ((ImprovedFF) mServerProvider).setJob(job);
                         
-                        String serverDetails = mServerProvider.getServer(largestServer.getType(), serverList);
+                        String serverDetails = mServerProvider.getServer(null, serverList);
                         mRepository.sendMessage("SCHD " + job.getJobId() + " " + serverDetails);
                         break;
                     // When server sends a complete message we send a REDY to fetch another job
