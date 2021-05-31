@@ -93,7 +93,9 @@ public class ClientRepository {
                         Integer.parseInt(serverMsg[3]),
                         Integer.parseInt(serverMsg[4]),
                         Integer.parseInt(serverMsg[5]),
-                        Integer.parseInt(serverMsg[6])
+                        Integer.parseInt(serverMsg[6]),
+                        Integer.parseInt(serverMsg[7]),
+                        Integer.parseInt(serverMsg[8])
                 );
                 serverArrayList.add(parsedServer);
                 isNoneReceived = message.equals("NONE");
