@@ -61,46 +61,16 @@ public class ClientRepository {
      * @param (int) numLines
      * @return ArrayList<String>
      */
-    public ArrayList<String> readMultiLineFromServer(int numLines) {
-        try {
-            // stores 'n' number of lines read into an Arraylist
-            ArrayList<String> lines = new ArrayList<String>();
-            // Loop which reads the messages and stores it into an ArrayList
-            for (int i = 0; i < numLines; i++) {
-                message = readMessage();
-                lines.add(message);
-                // boolean to check if "NONE" has been read
-                isNoneReceived = message.equals("NONE");
-            }
-            return lines;
-        } catch (IOException e) {
-            message = "Error";
-            return null;
-        }
-    }
-
-    public ArrayList<Server> getServerList(int numLines) {
-        ArrayList<Server> serverArrayList = new ArrayList<>();
+    public Server[] getServerList(int numLines) {
+        Server[] serverArray = new Server[numLines];
         try {
             for (int i = 0; i < numLines; i++) {
                 message = readMessage();
-
                 String[] serverMsg = message.split(" ");
-                Server parsedServer = new Server(
-                        serverMsg[0],
-                        Integer.parseInt(serverMsg[1]),
-                        serverMsg[2],
-                        Integer.parseInt(serverMsg[3]),
-                        Integer.parseInt(serverMsg[4]),
-                        Integer.parseInt(serverMsg[5]),
-                        Integer.parseInt(serverMsg[6]),
-                        Integer.parseInt(serverMsg[7]),
-                        Integer.parseInt(serverMsg[8])
-                );
-                serverArrayList.add(parsedServer);
+                serverArray[i] = new Server(serverMsg);
                 isNoneReceived = message.equals("NONE");
             }
-            return serverArrayList;
+            return serverArray;
         } catch (IOException exception) {
             message = "error";
             return null;

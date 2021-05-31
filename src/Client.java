@@ -90,11 +90,9 @@ public class Client {
                         message = mRepository.readMessage();
                         int numOfLines = Integer.parseInt(message.split(" ")[1]);
                         mRepository.sendMessage("OK");
-                        ArrayList<Server> serverList = mRepository.getServerList(numOfLines);
+                        Server[] serverList = mRepository.getServerList(numOfLines);
                         mRepository.sendMessage("OK");
                         message = mRepository.readMessage();
-                        if (mServerProvider instanceof ImprovedFF)
-                            ((ImprovedFF) mServerProvider).setJob(job);
                         
                         String serverDetails = mServerProvider.getServer(null, serverList);
                         mRepository.sendMessage("SCHD " + job.getJobId() + " " + serverDetails);
