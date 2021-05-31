@@ -19,7 +19,7 @@ public class Client {
      
     public static void main(String[] args) {
         ClientRepository repository = new ClientRepository();
-        MinWaitingTimeFit jFit = new MinWaitingTimeFit();
+        TinyWaitingTimeFit jFit = new TinyWaitingTimeFit();
         Client client = new Client(repository, jFit);
         client.connectToServer();
         client.serverHandshake();
