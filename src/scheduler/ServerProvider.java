@@ -2,8 +2,6 @@ package scheduler;
 
 import data.Server;
 
-import java.util.ArrayList;
-
 /**
  * In DS-Sim, the Client is responsible for choosing which Server Jobs
  * should be scheduled to.
@@ -18,5 +16,5 @@ public interface ServerProvider {
      * @param serverType
      * @return Server type and id
      */
-    String getServer(String serverType, ArrayList<Server> serverList);
+    String getServer(String serverType, Server[] serverList);
 }
