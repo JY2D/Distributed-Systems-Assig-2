@@ -18,8 +18,18 @@ public class Server implements Comparable<Server> {
     private String state;
     private int id;
 
-    public Server() {
-        // empty default constructor
+    public Server(String[] serverMsg) {
+        this(
+                serverMsg[0],
+                Integer.parseInt(serverMsg[1]),
+                serverMsg[2],
+                Integer.parseInt(serverMsg[3]),
+                Integer.parseInt(serverMsg[4]),
+                Integer.parseInt(serverMsg[5]),
+                Integer.parseInt(serverMsg[6]),
+                Integer.parseInt(serverMsg[7]),
+                Integer.parseInt(serverMsg[8])
+        );
     }
 
     public Server(String type, int id, String state, int bootupTime, int coreCount, int memory, int disk,int Waittime, int Runtime) {
